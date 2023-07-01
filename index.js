@@ -30,6 +30,7 @@ async function run() {
   try {
     const productCollection = client.db('food').collection('products');
     const dronkCollection = client.db('food').collection('dronk-product');
+    const sponsorCollection = client.db('food').collection('sponsor ');
 
 
     app.get('/product', async (req, res) => {
@@ -49,6 +50,12 @@ async function run() {
       app.get('/drink', async(req, res)=>{
         const query = {};
         const result = await dronkCollection.find(query).limit(6).toArray();
+        res.send(result)
+      });
+
+      app.get('/sponsors', async(req, res)=>{
+        const query = {};
+        const result = await sponsorCollection.find(query).toArray();
         res.send(result)
       })
 
